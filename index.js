@@ -2,7 +2,6 @@ function calcularLucro() {
   const investA = 30 - parseInt(document.getElementById("invest-a").value);
   const investB = 30 - parseInt(document.getElementById("invest-b").value);
   const investC = 30 - parseInt(document.getElementById("invest-c").value);
-  const investD = 30 - parseInt(document.getElementById("invest-d").value);
   const investE = 30 - parseInt(document.getElementById("invest-e").value);
   const investF = 30 - parseInt(document.getElementById("invest-f").value);
   const investG = 30 - parseInt(document.getElementById("invest-g").value);
@@ -16,20 +15,18 @@ function calcularLucro() {
     investA +
     investB +
     investC +
-    investD +
     investE +
     investF +
     investG +
     investH;
   const aguaProp = aguaValor / diasProp;
   const geladeira = 124.5;
-  const luzFixo = (geladeira * (luzValor / luzTotal)) / 8;
-  const luzProp = (luzValor - luzFixo * 8) / diasProp;
+  const luzFixo = (geladeira * (luzValor / luzTotal)) / 7;
+  const luzProp = (luzValor - luzFixo * 7) / diasProp;
 
   const lucroPorSocioA = aguaProp * investA;
   const lucroPorSocioB = aguaProp * investB;
   const lucroPorSocioC = aguaProp * investC;
-  const lucroPorSocioD = aguaProp * investD;
   const lucroPorSocioE = aguaProp * investE;
   const lucroPorSocioF = aguaProp * investF;
   const lucroPorSocioG = aguaProp * investG;
@@ -39,7 +36,6 @@ function calcularLucro() {
           <p>Ana Luiza: R$ ${lucroPorSocioA.toFixed(2)}</p>
           <p>Emilly: R$ ${lucroPorSocioB.toFixed(2)}</p>
           <p>Helena: R$ ${lucroPorSocioC.toFixed(2)}</p>
-          <p>Louise: R$ ${lucroPorSocioD.toFixed(2)}</p>
           <p>Maria Clara: R$ ${lucroPorSocioE.toFixed(2)}</p>
           <p>Maria Luiza: R$ ${lucroPorSocioF.toFixed(2)}</p>
           <p>Maria Luzia: R$ ${lucroPorSocioG.toFixed(2)}</p>
