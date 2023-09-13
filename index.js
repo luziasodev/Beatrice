@@ -24,13 +24,13 @@ function calcularLucro() {
   const luzFixo = (geladeira * (luzValor / luzTotal)) / 7;
   const luzProp = (luzValor - luzFixo * 7) / diasProp;
 
-  const lucroPorSocioA = aguaProp * investA;
-  const lucroPorSocioB = aguaProp * investB;
-  const lucroPorSocioC = aguaProp * investC;
-  const lucroPorSocioE = aguaProp * investE;
-  const lucroPorSocioF = aguaProp * investF;
-  const lucroPorSocioG = aguaProp * investG;
-  const lucroPorSocioH = aguaProp * investH;
+  const lucroPorSocioA = luzFixo + (aguaProp + luzProp) * investA;
+  const lucroPorSocioB = luzFixo + (aguaProp + luzProp) * investB;
+  const lucroPorSocioC = luzFixo + (aguaProp + luzProp) * investC;
+  const lucroPorSocioE = luzFixo + (aguaProp + luzProp) * investE;
+  const lucroPorSocioF = luzFixo + (aguaProp + luzProp) * investF;
+  const lucroPorSocioG = luzFixo + (aguaProp + luzProp) * investG;
+  const lucroPorSocioH = luzFixo + (aguaProp + luzProp) * investH;
 
   document.getElementById("resultado").innerHTML = `
           <p>Ana Luiza: R$ ${lucroPorSocioA.toFixed(2)}</p>
