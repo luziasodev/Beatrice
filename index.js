@@ -10,27 +10,49 @@ function calcularLucro() {
   const aguaValor = parseFloat(document.getElementById("aguaValor").value);
   const luzTotal = parseFloat(document.getElementById("luzTotal").value);
   const luzValor = parseFloat(document.getElementById("luzValor").value);
+  const aguaProp = aguaValor / aguaTotal;
+
+  const la = parseInt(document.getElementById("la").value);
+  const lb = parseInt(document.getElementById("lb").value);
+  const lc = parseInt(document.getElementById("lc").value);
+  const le = parseInt(document.getElementById("le").value);
+  const lf = parseInt(document.getElementById("lf").value);
+  const lg = parseInt(document.getElementById("lg").value);
+  const lh = parseInt(document.getElementById("lh").value);
+
+  //consumo em metro cubico da maquina por ciclo: 0.188
+  //litro consumido por pessoa
+
+  let vetorLavagens = [la, lb, lc, le, lf, lg, lh];
+  for (let i = 0; i < vetorLavagens.length; i++) {
+    vetorLavagens[i] *= 0.188;
+  }
+
+  //valor em reais das lavagens
+
+  let lavagemIndividual = vetorLavagens;
+  for (let i = 0; i < lavagemIndividual.length; i++) {
+    lavagemIndividual[i] *= aguaProp;
+  }
+
+  //valor em reais das lavagens da Angelica + água coletiva
+
+  const lavagemColetiva =
+    (aguaProp * (aguaTotal - (0.188 * (la + lb + lc + le + lf + lg + lh)))) / 7;
 
   const diasProp =
-    investA +
-    investB +
-    investC +
-    investE +
-    investF +
-    investG +
-    investH;
-  const aguaProp = aguaValor / diasProp;
+    investA + investB + investC + investE + investF + investG + investH;
   const geladeira = 124.5;
   const luzFixo = (geladeira * (luzValor / luzTotal)) / 7;
   const luzProp = (luzValor - luzFixo * 7) / diasProp;
 
-  const lucroPorSocioA = luzFixo + (aguaProp + luzProp) * investA;
-  const lucroPorSocioB = luzFixo + (aguaProp + luzProp) * investB;
-  const lucroPorSocioC = luzFixo + (aguaProp + luzProp) * investC;
-  const lucroPorSocioE = luzFixo + (aguaProp + luzProp) * investE;
-  const lucroPorSocioF = luzFixo + (aguaProp + luzProp) * investF;
-  const lucroPorSocioG = luzFixo + (aguaProp + luzProp) * investG;
-  const lucroPorSocioH = luzFixo + (aguaProp + luzProp) * investH;
+  const lucroPorSocioA = luzFixo + lavagemColetiva + lavagemIndividual[0] + (luzProp * investA);
+  const lucroPorSocioB = luzFixo + lavagemColetiva + lavagemIndividual[1] + (luzProp * investB);
+  const lucroPorSocioC = luzFixo + lavagemColetiva + lavagemIndividual[2] + (luzProp * investC);
+  const lucroPorSocioE = luzFixo + lavagemColetiva + lavagemIndividual[3] + (luzProp * investE);
+  const lucroPorSocioF = luzFixo + lavagemColetiva + lavagemIndividual[4] + (luzProp * investF);
+  const lucroPorSocioG = luzFixo + lavagemColetiva + lavagemIndividual[5] + (luzProp * investG);
+  const lucroPorSocioH = luzFixo + lavagemColetiva + lavagemIndividual[6] + (luzProp * investH);
 
   document.getElementById("resultado").innerHTML = `
           <p>Ana Luiza: R$ ${lucroPorSocioA.toFixed(2)}</p>
