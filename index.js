@@ -1,112 +1,98 @@
 function calcularLucro() {
   const lavagens = parseInt(document.getElementById("lavagens").value);
-  const investA = 30 - parseInt(document.getElementById("invest-a").value);
-  const investB = 30 - parseInt(document.getElementById("invest-b").value);
-  const investC = 30 - parseInt(document.getElementById("invest-c").value);
-  const investE = 30 - parseInt(document.getElementById("invest-e").value);
-  const investF = 30 - parseInt(document.getElementById("invest-f").value);
-  const investG = 30 - parseInt(document.getElementById("invest-g").value);
-  const investH = 30 - parseInt(document.getElementById("invest-h").value);
   const aguaTotal = parseFloat(document.getElementById("aguaTotal").value);
   const aguaValor = parseFloat(document.getElementById("aguaValor").value);
   const luzTotal = parseFloat(document.getElementById("luzTotal").value);
   const luzValor = parseFloat(document.getElementById("luzValor").value);
 
-  const la = parseInt(document.getElementById("la").value);
-  const lb = parseInt(document.getElementById("lb").value);
-  const lc = parseInt(document.getElementById("lc").value);
-  const le = parseInt(document.getElementById("le").value);
-  const lf = parseInt(document.getElementById("lf").value);
-  const lg = parseInt(document.getElementById("lg").value);
-  const lh = parseInt(document.getElementById("lh").value);
+  const vetorDias = [
+    30 - parseInt(document.getElementById("invest-a").value),
+    30 - parseInt(document.getElementById("invest-b").value),
+    30 - parseInt(document.getElementById("invest-c").value),
+    30 - parseInt(document.getElementById("invest-e").value),
+    30 - parseInt(document.getElementById("invest-f").value),
+    30 - parseInt(document.getElementById("invest-g").value),
+    30 - parseInt(document.getElementById("invest-h").value),
+  ];
+  var somaDias = 0;
+  for (var i = 0; i < vetorDias.length; i++) {
+    somaDias += vetorDias[i];
+  }
+
+  const vetorLavagens = [
+    parseInt(document.getElementById("la").value),
+    parseInt(document.getElementById("lb").value),
+    parseInt(document.getElementById("lc").value),
+    parseInt(document.getElementById("le").value),
+    parseInt(document.getElementById("lf").value),
+    parseInt(document.getElementById("lg").value),
+    parseInt(document.getElementById("lh").value),
+  ];
+  var somaLavagens = 0;
+  for (var i = 0; i < somaLavagens.length; i++) {
+    somaLavagens += vetorLavagens[i];
+  }
 
   //gastos da luz
 
-  const geladeira = 124.5;
-  const luzFixo = (geladeira * (luzValor / luzTotal)) / 7;
-  const diasProp =
-    investA + investB + investC + investE + investF + investG + investH;
-  const luzProp = (luzValor - luzFixo * 7) / diasProp;
+  const geladeira = 124.5 * (luzValor / luzTotal);
+  const luzFixo = geladeira / 7;
+  const AngelicaLuz = (4 * 0.46 * (luzValor / luzTotal)) / 7;
+  const maquina = 0.46 * lavagens * (luzValor / luzTotal);
+
+  const luzProp =
+    (luzValor - (geladeira + maquina + AngelicaLuz * 7)) / somaDias;
 
   //gastos da água
 
   const aguaProp = aguaValor / aguaTotal;
-  const lavProp =
-    (lavagens * 0.188 * aguaProp) / (la + lb + lc + le + lf + lg + lh);
+  const lavProp = (lavagens * 0.188 * aguaProp) / somaLavagens;
 
-  let lavagemIndividual = [la, lb, lc, le, lf, lg, lh];
+  let lavagemIndividual = vetorLavagens;
   for (let i = 0; i < lavagemIndividual.length; i++) {
     lavagemIndividual[i] *= lavProp;
   }
 
-  const Angelica = (aguaProp * 0.188 * 4) / 7;
+  //energia da maquina
 
-  const aguaColetiva =
-    (aguaValor - (Angelica * 7 + lavagens * 0.188 * aguaProp)) / diasProp;
-
-  const vetorColetivo = [
-    investA,
-    investB,
-    investC,
-    investE,
-    investF,
-    investG,
-    investH,
-  ];
-  for (let i = 0; i < vetorColetivo.length; i++) {
-    vetorColetivo[i] *= aguaColetiva;
+  let maqWatt = vetorLavagens;
+  for (let i = 0; i < maqWatt.length; i++) {
+    maqWatt[i] *= maquina / somaLavagens;
   }
 
-  const lucroPorSocioA =
-    luzFixo +
-    Angelica +
-    vetorColetivo[0] +
-    lavagemIndividual[0] +
-    luzProp * investA;
-  const lucroPorSocioB =
-    luzFixo +
-    Angelica +
-    vetorColetivo[1] +
-    lavagemIndividual[1] +
-    luzProp * investB;
-  const lucroPorSocioC =
-    luzFixo +
-    Angelica +
-    vetorColetivo[2] +
-    lavagemIndividual[2] +
-    luzProp * investC;
-  const lucroPorSocioE =
-    luzFixo +
-    Angelica +
-    vetorColetivo[3] +
-    lavagemIndividual[3] +
-    luzProp * investE;
-  const lucroPorSocioF =
-    luzFixo +
-    Angelica +
-    vetorColetivo[4] +
-    lavagemIndividual[4] +
-    luzProp * investF;
-  const lucroPorSocioG =
-    luzFixo +
-    Angelica +
-    vetorColetivo[5] +
-    lavagemIndividual[5] +
-    luzProp * investG;
-  const lucroPorSocioH =
-    luzFixo +
-    Angelica +
-    vetorColetivo[6] +
-    lavagemIndividual[6] +
-    luzProp * investH;
+  //agua limpeza + coletiva
+
+  const AngelicaAgua = (4 * aguaProp * 0.188) / 7;
+
+  const aguaColetiva =
+    (aguaValor - (AngelicaAgua * 7 + lavagens * 0.188 * aguaProp)) / somaDias;
+
+  let vetorAguaColetiva = vetorDias;
+  for (let i = 0; i < vetorAguaColetiva.length; i++) {
+    vetorAguaColetiva[i] *= aguaColetiva;
+  }
+
+  //soma das despesas
+
+  let total = [0, 0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < total.length; i++) {
+    total[i] +=
+      luzFixo +
+      AngelicaLuz +
+      AngelicaAgua +
+      vetorAguaColetiva[i] +
+      maqWatt[i] +
+      lavagemIndividual[i] +
+      vetorDias[i] * luzProp;
+  }
 
   document.getElementById("resultado").innerHTML = `
-          <p>Ana Luiza: R$ ${lucroPorSocioA.toFixed(2)}</p>
-          <p>Emilly: R$ ${lucroPorSocioB.toFixed(2)}</p>
-          <p>Helena: R$ ${lucroPorSocioC.toFixed(2)}</p>
-          <p>Maria Clara: R$ ${lucroPorSocioE.toFixed(2)}</p>
-          <p>Maria Luiza: R$ ${lucroPorSocioF.toFixed(2)}</p>
-          <p>Maria Luzia: R$ ${lucroPorSocioG.toFixed(2)}</p>
-          <p>Sarah: R$ ${lucroPorSocioH.toFixed(2)}</p>
+          <p>Ana Luiza: R$ ${total[0].toFixed(2)}</p>
+          <p>Emilly: R$ ${total[1].toFixed(2)}</p>
+          <p>Helena: R$ ${total[2].toFixed(2)}</p>
+          <p>Maria Clara: R$ ${total[3].toFixed(2)}</p>
+          <p>Maria Luiza: R$ ${total[4].toFixed(2)}</p>
+          <p>Maria Luzia: R$ ${total[5].toFixed(2)}</p>
+          <p>Sarah: R$ ${total[6].toFixed(2)}</p>
       `;
 }
