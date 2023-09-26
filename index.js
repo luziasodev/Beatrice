@@ -14,8 +14,8 @@ function calcularLucro() {
     30 - parseInt(document.getElementById("invest-g").value),
     30 - parseInt(document.getElementById("invest-h").value),
   ];
-  var somaDias = 0;
-  for (var i = 0; i < vetorDias.length; i++) {
+  let somaDias = 0;
+  for (let i = 0; i < vetorDias.length; i++) {
     somaDias += vetorDias[i];
   }
 
@@ -28,48 +28,56 @@ function calcularLucro() {
     parseInt(document.getElementById("lg").value),
     parseInt(document.getElementById("lh").value),
   ];
-  var somaLavagens = 0;
-  for (var i = 0; i < somaLavagens.length; i++) {
+  let somaLavagens = 0;
+  for (let i = 0; i < vetorLavagens.length; i++) {
     somaLavagens += vetorLavagens[i];
   }
 
+  const L = luzValor / luzTotal;
+  const A = aguaValor / aguaTotal;
+
+  //gastos fixos
+
+  const geladeira = (124.5 * L) / 7;
+  const luzFaxina = (4 * 0.46 * L) / 7;
+  const aguaFaxina = (4 * 0.188 * A) / 7;
+  const faxina = luzFaxina + aguaFaxina;
+
   //gastos da luz
 
-  const geladeira = 124.5 * (luzValor / luzTotal);
-  const luzFixo = geladeira / 7;
-  const AngelicaLuz = (4 * 0.46 * (luzValor / luzTotal)) / 7;
-  const maquina = 0.46 * lavagens * (luzValor / luzTotal);
+  const luzMaquina = 0.46 * lavagens * L;
+  const sociedadeLuz =
+    (luzValor - (geladeira * 7 + luzMaquina + luzFaxina * 7)) / somaDias;
 
-  const luzProp =
-    (luzValor - (geladeira + maquina + AngelicaLuz * 7)) / somaDias;
+  let luzColetiva = vetorDias;
+  for (let i = 0; i < luzColetiva.length; i++) {
+    luzColetiva[i] *= sociedadeLuz;
+  }
 
   //gastos da água
 
-  const aguaProp = aguaValor / aguaTotal;
-  const lavProp = (lavagens * 0.188 * aguaProp) / somaLavagens;
+  const aguaMaquina = lavagens * 0.188 * A;
+  const sociedadeLavagem = aguaMaquina / somaLavagens;
 
-  let lavagemIndividual = vetorLavagens;
-  for (let i = 0; i < lavagemIndividual.length; i++) {
-    lavagemIndividual[i] *= lavProp;
+  let aguaLavagem = vetorLavagens;
+  for (let i = 0; i < aguaLavagem.length; i++) {
+    aguaLavagem[i] *= sociedadeLavagem;
   }
 
   //energia da maquina
 
-  let maqWatt = vetorLavagens;
-  for (let i = 0; i < maqWatt.length; i++) {
-    maqWatt[i] *= maquina / somaLavagens;
+  let luzLavagem = vetorLavagens;
+  for (let i = 0; i < luzLavagem.length; i++) {
+    luzLavagem[i] *= luzMaquina / somaLavagens;
   }
 
   //agua limpeza + coletiva
 
-  const AngelicaAgua = (4 * aguaProp * 0.188) / 7;
+  const sociedadeAgua = (aguaValor - (aguaFaxina * 7 + aguaMaquina)) / somaDias;
 
-  const aguaColetiva =
-    (aguaValor - (AngelicaAgua * 7 + lavagens * 0.188 * aguaProp)) / somaDias;
-
-  let vetorAguaColetiva = vetorDias;
-  for (let i = 0; i < vetorAguaColetiva.length; i++) {
-    vetorAguaColetiva[i] *= aguaColetiva;
+  let aguaColetiva = vetorDias;
+  for (let i = 0; i < aguaColetiva.length; i++) {
+    aguaColetiva[i] *= sociedadeAgua;
   }
 
   //soma das despesas
@@ -77,13 +85,12 @@ function calcularLucro() {
   let total = [0, 0, 0, 0, 0, 0, 0];
   for (let i = 0; i < total.length; i++) {
     total[i] +=
-      luzFixo +
-      AngelicaLuz +
-      AngelicaAgua +
-      vetorAguaColetiva[i] +
-      maqWatt[i] +
-      lavagemIndividual[i] +
-      vetorDias[i] * luzProp;
+      geladeira +
+      faxina +
+      luzLavagem[i] +
+      aguaLavagem[i] +
+      luzColetiva[i] +
+      aguaColetiva[i];
   }
 
   document.getElementById("resultado").innerHTML = `
