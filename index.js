@@ -33,13 +33,20 @@ function calcularLucro() {
     somaLavagens += vetorLavagens[i];
   }
 
-  const L = luzValor / luzTotal;
-  const A = aguaValor / aguaTotal;
+  const L = luzValor / luzTotal; //preço por kWh
+  const A = aguaValor / aguaTotal; //preço por metro cubico
+  
+  //a maior parte das constantes tem unidade monetária
 
-  //gastos fixos
+  /* gastos fixos em 30 dias
 
-  const geladeira = (124.5 * L) / 7;
-  const luzFaxina = (4 * 0.46 * L) / 7;
+  - faxina com maquina ocorre 4x
+  - geladeira: 124.5 kWh
+  - maquina: 0.46 kWh e 0.188 m3 por lavagem
+  - gasto fixo divide pra 7 pessoas*/
+
+  const geladeira = (124.5 * L) / 7; 
+  const luzFaxina = (4 * 0.46 * L) / 7; 
   const aguaFaxina = (4 * 0.188 * A) / 7;
   const faxina = luzFaxina + aguaFaxina;
 
