@@ -14,13 +14,13 @@ function calcularDespesa() {
     30 - parseInt(document.getElementById("invest-h").value),
   ];
   const vetorLavagens = [
-    parseInt(document.getElementById("la").value),
-    parseInt(document.getElementById("lb").value),
-    parseInt(document.getElementById("lc").value),
-    parseInt(document.getElementById("le").value),
-    parseInt(document.getElementById("lf").value),
-    parseInt(document.getElementById("lg").value),
-    parseInt(document.getElementById("lh").value),
+    parseFloat(document.getElementById("la").value),
+    parseFloat(document.getElementById("lb").value),
+    parseFloat(document.getElementById("lc").value),
+    parseFloat(document.getElementById("le").value),
+    parseFloat(document.getElementById("lf").value),
+    parseFloat(document.getElementById("lg").value),
+    parseFloat(document.getElementById("lh").value),
   ];
 
   let somaDias = 0;
