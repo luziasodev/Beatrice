@@ -1,10 +1,9 @@
-function calcularLucro() {
+function calcularDespesa() {
   const lavagens = parseInt(document.getElementById("lavagens").value);
   const aguaTotal = parseFloat(document.getElementById("aguaTotal").value);
   const aguaValor = parseFloat(document.getElementById("aguaValor").value);
   const luzTotal = parseFloat(document.getElementById("luzTotal").value);
   const luzValor = parseFloat(document.getElementById("luzValor").value);
-
   const vetorDias = [
     30 - parseInt(document.getElementById("invest-a").value),
     30 - parseInt(document.getElementById("invest-b").value),
@@ -14,11 +13,6 @@ function calcularLucro() {
     30 - parseInt(document.getElementById("invest-g").value),
     30 - parseInt(document.getElementById("invest-h").value),
   ];
-  let somaDias = 0;
-  for (let i = 0; i < vetorDias.length; i++) {
-    somaDias += vetorDias[i];
-  }
-
   const vetorLavagens = [
     parseInt(document.getElementById("la").value),
     parseInt(document.getElementById("lb").value),
@@ -28,66 +22,52 @@ function calcularLucro() {
     parseInt(document.getElementById("lg").value),
     parseInt(document.getElementById("lh").value),
   ];
+
+  let somaDias = 0;
+  for (let i = 0; i < vetorDias.length; i++) {
+    somaDias += vetorDias[i];
+  }
   let somaLavagens = 0;
   for (let i = 0; i < vetorLavagens.length; i++) {
     somaLavagens += vetorLavagens[i];
   }
 
-  const L = luzValor / luzTotal; //preço por kWh
-  const A = aguaValor / aguaTotal; //preço por metro cubico
-  
-  //a maior parte das constantes tem unidade monetária
-
-  /* gastos fixos em 30 dias
-
-  - faxina com maquina ocorre 4x
-  - geladeira: 124.5 kWh
-  - maquina: 0.46 kWh e 0.188 m3 por lavagem
-  - gasto fixo divide pra 7 pessoas*/
+  const L = luzValor / luzTotal;
+  const A = aguaValor / aguaTotal;
 
   const geladeira = (124.5 * L) / 7; 
   const luzFaxina = (4 * 0.46 * L) / 7; 
   const aguaFaxina = (4 * 0.188 * A) / 7;
   const faxina = luzFaxina + aguaFaxina;
 
-  //gastos da luz
-
   const luzMaquina = 0.46 * lavagens * L;
   const sociedadeLuz =
     (luzValor - (geladeira * 7 + luzMaquina + luzFaxina * 7)) / somaDias;
 
-  let luzColetiva = vetorDias;
+  let luzColetiva = vetorDias.slice(0,7);
   for (let i = 0; i < luzColetiva.length; i++) {
     luzColetiva[i] *= sociedadeLuz;
   }
 
-  //gastos da água
-
   const aguaMaquina = lavagens * 0.188 * A;
   const sociedadeLavagem = aguaMaquina / somaLavagens;
 
-  let aguaLavagem = vetorLavagens;
+  let aguaLavagem = vetorLavagens.slice(0,7);
   for (let i = 0; i < aguaLavagem.length; i++) {
     aguaLavagem[i] *= sociedadeLavagem;
   }
 
-  //energia da maquina
-
-  let luzLavagem = vetorLavagens;
+  let luzLavagem = vetorLavagens.slice(0,7);
   for (let i = 0; i < luzLavagem.length; i++) {
     luzLavagem[i] *= luzMaquina / somaLavagens;
   }
 
-  //agua limpeza + coletiva
-
   const sociedadeAgua = (aguaValor - (aguaFaxina * 7 + aguaMaquina)) / somaDias;
 
-  let aguaColetiva = vetorDias;
+  let aguaColetiva = vetorDias.slice(0,7);
   for (let i = 0; i < aguaColetiva.length; i++) {
     aguaColetiva[i] *= sociedadeAgua;
   }
-
-  //soma das despesas
 
   let total = [0, 0, 0, 0, 0, 0, 0];
   for (let i = 0; i < total.length; i++) {
