@@ -21,6 +21,11 @@ h1 {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.tutorial {
+  margin: 20px;
+  background-color: rgb(247, 215, 250);
+  padding: 5px;
+}
 .calculadora {
   display: flex;
   gap: 40px;
