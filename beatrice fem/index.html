@@ -26,7 +26,7 @@
       <h3>Proporção de Sociedade</h3>
 
       <p>
-        Retirando os gastos da geladeira e da máquina na conta de luz e
+        Retirando os gastos de refrigeradores, da máquina na conta de luz e
         dividindo pela soma de dias, é feita a constante de proporção de
         sociedade. Esta, multiplicada por quantos dias a pessoa ficou no local,
         retorna o valor justo a se pagar. Semelhante ocorre com conta de água.
@@ -40,49 +40,70 @@
     </div>
     <div id="resultado"></div>
     <div class="calculadora">
+      <div class="moradores">
+        <h2>Moradores</h2>
+        <div class="input-container">
+          <label for="pessoas">Nº Pessoas</label>
+          <input type="number" id="pessoas" value="" min="0" />
+        </div>
+      </div>
       <div class="dias">
         <h2>Dias Fora + Lavagens</h2>
+
+        <!-- Para adicionar/remover o campo de uma pessoa, basta adicionar/remover:
+
+          <div class="input-container">
+          <label for="pessoaX">B:</label>
+          <input type="number" id="pessoaX" value="" min="0" />
+          <label for="nlavagemX"></label>
+          <input type="number" id="nlavagemX" value="" min="0" />
+          </div> 
+
+          Lembre-se que os vetores na computação/matemática começam no 0. Ou seja, existe dados de uma pessoa na posição 0. X é o valor que vc atribui.
+
+          -->
+          
         <div class="input-container">
-          <label for="invest-a">Yasmin:</label>
-          <input type="number" id="invest-a" value="" min="0" />
-          <label for="la"></label>
-          <input type="number" id="la" value="" min="0" />
+          <label for="pessoa0">Yasmin:</label>
+          <input type="number" id="pessoa0" value="" min="0" />
+          <label for="nlavagem0"></label>
+          <input type="number" id="nlavagem0" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-b">B:</label>
-          <input type="number" id="invest-b" value="" min="0" />
-          <label for="lb"></label>
-          <input type="number" id="lb" value="" min="0" />
+          <label for="pessoa1">1:</label>
+          <input type="number" id="pessoa1" value="" min="0" />
+          <label for="nlavagem1"></label>
+          <input type="number" id="nlavagem1" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-c">C:</label>
-          <input type="number" id="invest-c" value="" min="0" />
-          <label for="lc"></label>
-          <input type="number" id="lc" value="" min="0" />
+          <label for="pessoa2">2:</label>
+          <input type="number" id="pessoa2" value="" min="0" />
+          <label for="nlavagem2"></label>
+          <input type="number" id="nlavagem2" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-e">D:</label>
-          <input type="number" id="invest-e" value="" min="0" />
-          <label for="le"></label>
-          <input type="number" id="le" value="" min="0" />
+          <label for="pessoa3">3:</label>
+          <input type="number" id="pessoa3" value="" min="0" />
+          <label for="nlavagem3"></label>
+          <input type="number" id="nlavagem3" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-f">E:</label>
-          <input type="number" id="invest-f" value="" min="0" />
-          <label for="lf"></label>
-          <input type="number" id="lf" value="" min="0" />
+          <label for="pessoa4">4:</label>
+          <input type="number" id="pessoa4" value="" min="0" />
+          <label for="nlavagem4"></label>
+          <input type="number" id="nlavagem4" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-g">F:</label>
-          <input type="number" id="invest-g" value="" min="0" />
-          <label for="lg"></label>
-          <input type="number" id="lg" value="" min="0" />
+          <label for="pessoa5">5:</label>
+          <input type="number" id="pessoa5" value="" min="0" />
+          <label for="nlavagem5"></label>
+          <input type="number" id="nlavagem5" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-h">H:</label>
-          <input type="number" id="invest-h" value="" min="0" />
-          <label for="lh"></label>
-          <input type="number" id="lh" value="" min="0" />
+          <label for="pessoa6">6:</label>
+          <input type="number" id="pessoa6" value="" min="0" />
+          <label for="nlavagem6"></label>
+          <input type="number6" id="nlavagem6" value="" min="0" />
         </div>
       </div>
       <div class="contas">

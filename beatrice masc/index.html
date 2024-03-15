@@ -26,57 +26,71 @@
       <h3>Proporção de Sociedade</h3>
 
       <p>
-        Retirando os gastos da geladeira e da máquina na conta de luz e
+        Retirando os gastos de refrigeradores, de chuveiros elétricos na conta de luz e
         dividindo pela soma de dias, é feita a constante de proporção de
         sociedade. Esta, multiplicada por quantos dias a pessoa ficou no local,
         retorna o valor justo a se pagar. Semelhante ocorre com conta de água.
       </p>
 
-      <p>
-        As lavagens individuais usam a soma das lavagens de cada uma pra fazer a
-        proporção. Pode haver o caso de n pessoas compartilharem uma lavagem,
-        daí esta equivale ao de acréscimo de 1/n no saldo de cada pessoa.
-      </p>
     </div>
     <div id="resultado"></div>
     <div class="calculadora">
+      <div class="moradores">
+        <h2>Moradores</h2>
+        <div class="input-container">
+          <label for="pessoas">Nº Pessoas</label>
+          <input type="number" id="pessoas" value="" min="0" />
+        </div>
+      </div>
       <div class="dias">
         <h2>Dias Fora</h2>
+
+        <!-- Para adicionar/remover o campo de uma pessoa, basta adicionar/remover:
+
+          <div class="input-container">
+          <label for="pessoaX">B:</label>
+          <input type="number" id="pessoaX" value="" min="0" />
+          </div> 
+
+          Lembre-se que os vetores na computação/matemática começam no 0. Ou seja, existe dados de uma pessoa na posição 0.
+
+          -->
+          
         <div class="input-container">
-          <label for="invest-a">Guilherme:</label>
-          <input type="number" id="invest-a" value="" min="0" />
+          <label for="pessoa0">Guilherme:</label>
+          <input type="number" id="pessoa0" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-b">B:</label>
-          <input type="number" id="invest-b" value="" min="0" />
+          <label for="pessoa1">1:</label>
+          <input type="number" id="pessoa1" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-c">C:</label>
-          <input type="number" id="invest-c" value="" min="0" />
+          <label for="pessoa2">2:</label>
+          <input type="number" id="pessoa2" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-e">D:</label>
-          <input type="number" id="invest-e" value="" min="0" />
+          <label for="pessoa3">3:</label>
+          <input type="number" id="pessoa3" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-f">E:</label>
-          <input type="number" id="invest-f" value="" min="0" />
+          <label for="pessoa4">4:</label>
+          <input type="number" id="pessoa4" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-g">F:</label>
-          <input type="number" id="invest-g" value="" min="0" />
+          <label for="pessoa5">5:</label>
+          <input type="number" id="pessoa5" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-h">G:</label>
-          <input type="number" id="invest-h" value="" min="0" />
+          <label for="pessoa6">6:</label>
+          <input type="number" id="pessoa6" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-j">H:</label>
-          <input type="number" id="invest-j" value="" min="0" />
+          <label for="pessoa7">7:</label>
+          <input type="number" id="pessoa7" value="" min="0" />
         </div>
         <div class="input-container">
-          <label for="invest-k">J:</label>
-          <input type="number" id="invest-k" value="" min="0" />
+          <label for="pessoa8">8:</label>
+          <input type="number" id="pessoa8" value="" min="0" />
         </div>
       </div>
       <div class="contas">
@@ -89,6 +103,7 @@
           <label for="aguaValor">Valor (R$):</label>
           <input type="number" id="aguaValor" value="" min="0" />
         </div>
+
         <h2>Luz</h2>
         <div class="input-container">
           <label for="luzTotal">Total (kWh):</label>
@@ -98,7 +113,18 @@
           <label for="luzTotal">Valor (R$):</label>
           <input type="number" id="luzValor" value="" min="0" />
         </div>
+
         <h2>Outros</h2>
+         <!-- Para adicionar/remover o campo de um aparelho, basta adicionar/remover:
+
+          <div class="input-container">
+          <label for="nomeDoAparelho">Consumo em (kWh):</label>
+          <input type="number" id="nomeDoAparelho" value="" min="0" />
+        </div>
+
+          
+
+          -->
         <div class="input-container">
           <label for="chuvGui">Chuveiro Gui (kWh):</label>
           <input type="number" id="chuvGui" value="" min="0" />
