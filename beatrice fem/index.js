@@ -217,8 +217,7 @@ function calcularLucro() {
             luzColetiva[4] +
             geladeira +
             luzFaxina +
-            luzLavagem[4] +
-            valorPortatil * vetorDias[4]
+            luzLavagem[4]
           ).toFixed(2)}; 
           conta de água ${(
             aguaColetiva[4] +
@@ -234,8 +233,7 @@ function calcularLucro() {
             luzColetiva[5] +
             geladeira +
             luzFaxina +
-            luzLavagem[5] +
-            valorPortatil * vetorDias[5]
+            luzLavagem[5]
           ).toFixed(2)}; 
           conta de água ${(
             aguaColetiva[5] +
@@ -251,8 +249,7 @@ function calcularLucro() {
             luzColetiva[6] +
             geladeira +
             luzFaxina +
-            luzLavagem[6] +
-            valorPortatil * vetorDias[6]
+            luzLavagem[6]
           ).toFixed(2)}; 
           conta de água ${(
             aguaColetiva[6] +

@@ -94,6 +94,8 @@ function calcularLucro() {
     total[i] = total[i] + (valorPortatil * vetorDias[i]);
   }
 
+  /* Confira os gastos que cada um deve ter. Todos devem pagar pela luz coletiva, agua coletiva e geladeira */
+
   document.getElementById("resultado").innerHTML = `
   <p>O ar e aparelhos próprios já se incluem na luz. O valor separado é para relatório e análise.</p>
 
@@ -158,7 +160,8 @@ function calcularLucro() {
   <p>3: R$ ${total[3].toFixed(2)}. 
   Detalhes: 
   conta de luz ${(
-    luzColetiva[3]
+    luzColetiva[3] +
+    geladeira
     ).toFixed(2)
   }; 
   conta de água ${(
@@ -170,7 +173,8 @@ function calcularLucro() {
   <p>4: R$ ${total[4].toFixed(2)}. 
   Detalhes: 
   conta de luz ${(
-    luzColetiva[4]
+    luzColetiva[4] +
+    geladeira
     ).toFixed(2)
   }; 
   conta de água ${(
