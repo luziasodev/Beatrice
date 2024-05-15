@@ -95,6 +95,9 @@ function calcularLucro() {
 
   // regra de sociedade com métrica de lavagens. no vetor da forma vetorLavagens[i], o i indica a posição da pessoa. Todas estão incluídas. se não lavou, o valor zera porque fez 0 lavagens.
   const sociedadeLavagem = aguaMaquina / somaLavagens;
+  if (somaLavagens === 0) {
+    sociedadeLavagem = 0;
+  }
 
   let aguaLavagem = vetorLavagens.slice(0, pessoas);
   for (let i = 0; i < aguaLavagem.length; i++) {
@@ -104,6 +107,9 @@ function calcularLucro() {
   let luzLavagem = vetorLavagens.slice(0, pessoas);
   for (let i = 0; i < luzLavagem.length; i++) {
     luzLavagem[i] *= luzMaquina / somaLavagens;
+    if (somaLavagens === 0) {
+      luzLavagem[i] = 0;
+    }
   }
 
   const sociedadeAgua =
